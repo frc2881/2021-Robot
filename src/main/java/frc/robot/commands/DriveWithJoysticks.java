@@ -43,13 +43,13 @@ public class DriveWithJoysticks extends CommandBase {
   @Override
   public void execute() {
 
-    m_drive.tankDrive(m_forward.getAsDouble(), m_rotation.getAsDouble());
+    m_drive.arcadeDrive(m_forward.getAsDouble(), m_rotation.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-      m_drive.tankDrive(0.0, 0.0);
+      m_drive.arcadeDrive(0.0, 0.0);
   }
 
   // Returns true when the command should end.

@@ -39,13 +39,14 @@ public class Drive extends SubsystemBase {
             rightRear.setInverted(false);
             rightRear.setIdleMode(IdleMode.kBrake);
         
+        driveTrain = new DifferentialDrive(leftFront, rightFront);
         leftRear.follow(leftFront);
         rightRear.follow(rightFront);
     }
 
-    public void tankDrive(double lSpeed, double rSpeed){
+    public void arcadeDrive(double lSpeed, double rSpeed){
 
-        driveTrain.tankDrive(-lSpeed, -rSpeed);
+        driveTrain.arcadeDrive(-lSpeed, -rSpeed);
 
     }
 

@@ -40,9 +40,17 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drive m_Subsystem = new Drive();
 
-  //private final DriveWithJoysticks m_autoCommand = new DriveWithJoysticks(m_Subsystem, m_Subsystem.);
-
   XboxController m_driverController = new XboxController(1);
+
+  private final DriveWithJoysticks m_autoCommand = new DriveWithJoysticks(
+
+    m_Subsystem, 
+    () -> 
+    m_driverController.getY(GenericHID.Hand.kLeft),
+    () ->
+    m_driverController.getX(GenericHID.Hand.kRight));
+
+  
 
 
   /**
@@ -53,13 +61,14 @@ public class RobotContainer {
     configureButtonBindings();
   
 
-  m_Subsystem.setDefaultCommand(
-    new RunCommand(
+  m_Subsystem.setDefaultCommand(m_autoCommand);
+  
+    /*new RunCommand(
       () -> 
-        m_Subsystem.tankDrive(
+        m_Subsystem.arcadeDrive(
             m_driverController.getY(GenericHID.Hand.kLeft),
             m_driverController.getX(GenericHID.Hand.kRight)),
-            m_Subsystem));
+            m_Subsystem));*/
 }
 
   /**
