@@ -35,7 +35,7 @@ public class Drive extends SubsystemBase {
             rightFront.setInverted(false);
             rightFront.setIdleMode(IdleMode.kBrake);
 
-        rightRear = new CANSparkMax(3, MotorType.kBrushless);
+        rightRear = new CANSparkMax(4, MotorType.kBrushless);
             rightRear.setInverted(false);
             rightRear.setIdleMode(IdleMode.kBrake);
         
@@ -44,9 +44,9 @@ public class Drive extends SubsystemBase {
         rightRear.follow(rightFront);
     }
 
-    public void arcadeDrive(double lSpeed, double rSpeed){
-
-        driveTrain.arcadeDrive(-lSpeed, -rSpeed);
+    public void arcadeDrive(double speed, double rotation){
+        System.out.println(speed + " " + rotation);
+        driveTrain.arcadeDrive(speed, rotation);
 
     }
 

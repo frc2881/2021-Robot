@@ -46,9 +46,9 @@ public class RobotContainer {
 
     m_Subsystem, 
     () -> 
-    m_driverController.getY(GenericHID.Hand.kLeft),
+    m_driverController.getRawAxis(1),
     () ->
-    m_driverController.getX(GenericHID.Hand.kRight));
+    -m_driverController.getRawAxis(2));
 
   
 
@@ -62,14 +62,14 @@ public class RobotContainer {
   
 
   m_Subsystem.setDefaultCommand(m_autoCommand);
-  
-    /*new RunCommand(
+  /*m_Subsystem.setDefaultCommand(
+    new RunCommand(
       () -> 
         m_Subsystem.arcadeDrive(
-            m_driverController.getY(GenericHID.Hand.kLeft),
-            m_driverController.getX(GenericHID.Hand.kRight)),
+            m_driverController.getRawAxis(1),
+            m_driverController.getRawAxis(2)),
             m_Subsystem));*/
-}
+  }
 
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
