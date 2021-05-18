@@ -10,25 +10,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveWithJoysticks;
+import frc.robot.commands.ControlIntake;
 import frc.robot.subsystems.Drive;
-import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.Intake;
 
 import static edu.wpi.first.wpilibj.XboxController.Button;
 
-import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.controller.RamseteController;
-import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
-import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.geometry.Translation2d;
-import edu.wpi.first.wpilibj.trajectory.Trajectory;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
-import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import java.util.List;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -39,6 +27,7 @@ import java.util.List;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drive m_Subsystem = new Drive();
+  private final Intake m_intake = new Intake();
 
   XboxController m_driverController = new XboxController(1);
 
@@ -50,8 +39,7 @@ public class RobotContainer {
     () ->
     -m_driverController.getRawAxis(2));
 
-  
-
+  //private final IntakeStop m_IntakeStop = new IntakeStop(m_intake);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -62,6 +50,8 @@ public class RobotContainer {
   
 
   m_Subsystem.setDefaultCommand(m_autoCommand);
+  //intake.setDefaultCommand();
+
   /*m_Subsystem.setDefaultCommand(
     new RunCommand(
       () -> 
@@ -81,6 +71,9 @@ public class RobotContainer {
     new JoystickButton(m_driverController, Button.kBumperRight.value)
       .whenPressed(() -> m_Subsystem.setMaxOutput(0.5))
       .whenReleased(() -> m_Subsystem.setMaxOutput(1));
+    
+    new JoystickButton(m_driverController, Button.kB.value)
+      .whileHeld(new ControlIntake(m_intake));
   }
 
 
