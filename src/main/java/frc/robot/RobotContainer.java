@@ -43,7 +43,7 @@ public class RobotContainer {
             .whenPressed(() -> drive.setMaxOutput(0.5))
             .whenReleased(() -> drive.setMaxOutput(1));
     
-        new JoystickButton(driverController, Button.kB.value)
+        new JoystickButton(driverController, Button.kBumperLeft.value)
             .whileHeld(new ControlIntake(intake));
     }
 
