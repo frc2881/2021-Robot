@@ -3,8 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-import frc.robot.subsystems.BallStorage.BeltAlignment;
-import frc.robot.subsystems.BallStorage.BeltDirection;
+import frc.robot.subsystems.BallStorage.*;
 
 
 import static edu.wpi.first.wpilibj.XboxController.Button;
