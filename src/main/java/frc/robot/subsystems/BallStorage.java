@@ -59,9 +59,4 @@ public class BallStorage extends SubsystemBase{
         leftAlignBelt.set(left);
         rightAlignBelt.set(right);
     }
-
-    @Override
-    public void periodic(){
-
-    }
 }

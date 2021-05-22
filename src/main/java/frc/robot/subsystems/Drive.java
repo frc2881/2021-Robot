@@ -13,11 +13,11 @@ public class Drive extends SubsystemBase {
     private CANSparkMax leftRear;
     private CANSparkMax rightFront;
     private CANSparkMax rightRear;
+
     private DifferentialDrive driveTrain;
 
     public Drive(){
       
-
         leftFront = new CANSparkMax(1, MotorType.kBrushless);
             leftFront.setInverted(false);
             leftFront.setIdleMode(IdleMode.kBrake);
@@ -35,6 +35,7 @@ public class Drive extends SubsystemBase {
             rightRear.setIdleMode(IdleMode.kBrake);
         
         driveTrain = new DifferentialDrive(leftFront, rightFront);
+        
         leftRear.follow(leftFront);
         rightRear.follow(rightFront);
     }
@@ -42,12 +43,6 @@ public class Drive extends SubsystemBase {
     public void arcadeDrive(double speed, double rotation){
         System.out.println(speed + " " + rotation);
         driveTrain.arcadeDrive(speed, rotation);
-
-    }
-
-    @Override
-    public void periodic(){
-        
     }
 
     public void setMaxOutput(double maxOutput){

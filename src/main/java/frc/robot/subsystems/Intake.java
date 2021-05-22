@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase{
 
-    private CANSparkMax intake;
-
     public boolean intakeStart = true;
     public boolean intakeStop = true;
+    
+    private CANSparkMax intake;
     
     public Intake(){
 
@@ -25,10 +25,5 @@ public class Intake extends SubsystemBase{
 
     public boolean getIntakeStop(){
         return intakeStop;
-    }
-
-    @Override
-    public void periodic(){
-
     }
 }
