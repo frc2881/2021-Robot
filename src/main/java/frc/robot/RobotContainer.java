@@ -1,10 +1,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.DriveWithJoysticks;
-import frc.robot.commands.ControlIntake;
-import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.Intake;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
+import frc.robot.subsystems.BallStorage.BeltAlignment;
+import frc.robot.subsystems.BallStorage.BeltDirection;
+
 
 import static edu.wpi.first.wpilibj.XboxController.Button;
 
@@ -16,6 +17,7 @@ public class RobotContainer {
 
     private final Drive drive = new Drive();
     private final Intake intake = new Intake();
+    private final BallStorage ballStorage = new BallStorage();
 
     private final DriveWithJoysticks driveWithJoysticks = new DriveWithJoysticks(
         drive, 
@@ -44,7 +46,10 @@ public class RobotContainer {
             .whenReleased(() -> drive.setMaxOutput(1));
     
         new JoystickButton(driverController, Button.kBumperLeft.value)
-            .whileHeld(new ControlIntake(intake));
+            .whileHeld(new ControlIntake(intake, 0.5));
+
+        new JoystickButton(driverController, Button.kBumperRight.value)
+            .whileHeld(new ControlAlign(ballStorage, BeltAlignment.LEFT, BeltDirection.CENTER));
     }
 
 }

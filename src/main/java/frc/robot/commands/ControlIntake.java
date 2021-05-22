@@ -6,9 +6,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ControlIntake extends CommandBase {
 @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
+    double speed;
     private Intake intake;
   
-    public ControlIntake(Intake intake) {
+    public ControlIntake(Intake intake, double speed) {
+        
+        this.speed = speed;
+
         this.intake = intake;
 
         addRequirements(intake);
@@ -17,13 +21,13 @@ public class ControlIntake extends CommandBase {
     @Override
     public void execute() {
     
-        double m_speed;
         if(intake.intakeStop)
-            m_speed = 0;
+            speed = 0;
         else
-            m_speed = -0.5;
+            speed = -0.5;
 
-        intake.controlIntake(m_speed);
+        System.out.println(speed);
+        intake.controlIntake(speed);
     }
 
     @Override
